@@ -20,7 +20,9 @@ def repeat(message):
 
     luck = random.randint(1, 5)
     uid = message.chat.username
+    
     if '@big_black_chocolate_bot' in message.text :
+        result = [ t for t in message.text.split() if t.startswith('@') ]
         reply = bot.send_message(message.chat.id, 'WP')
         print(reply)
 
