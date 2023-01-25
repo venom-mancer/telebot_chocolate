@@ -1,8 +1,12 @@
 import  telebot
 import os
 import requests
+from dotenv import load_dotenv, find_dotenv
+from pathlib import Path
+import random
 
-API_KEY = os.getenv('API_KEY')
+API_KEY = 'mykey'
+
 bot = telebot.TeleBot(API_KEY)
 
 @bot.message_handler(commands = ['greet','start'])
@@ -13,8 +17,12 @@ def greet(message):
 
 @bot.message_handler(func=lambda m: True)
 def repeat(message):
-    message.from_user.username
-    bot.send_message(message.from_user.username, message.text)
+
+    luck = random.randint(1, 5)
+    uid = message.chat.username
+    if '@big_black_chocolate_bot' in message.text :
+        reply = bot.send_message(message.chat.id, 'WP')
+        print(reply)
 
 def main():
     bot.infinity_polling()
